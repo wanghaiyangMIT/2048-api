@@ -23,7 +23,6 @@ class Vgg10Conv(nn.Module):
             # conv1
             nn.Conv2d(1, 64, 3, padding=1),   nn.BatchNorm2d(64),  nn.ReLU(), 
             nn.Conv2d(64, 64, 3, padding=1),  nn.BatchNorm2d(64),  nn.ReLU(), 
-            #nn.MaxPool2d(2, stride=2, return_indices=True),
             # conv2
             nn.Conv2d(64, 128, 3, padding=1),  nn.BatchNorm2d(128), nn.ReLU(),   
             nn.Conv2d(128, 128, 3, padding=1), nn.BatchNorm2d(128), nn.ReLU(),  
@@ -38,7 +37,6 @@ class Vgg10Conv(nn.Module):
             nn.Linear(256, 512),   nn.ReLU(),  nn.Dropout(),
             nn.Linear(512, 512),          nn.ReLU(),  nn.Dropout(),
             nn.Linear(512, num_cls)
-            #nn.Softmax(dim=1)
         )
 
         # index of conv
