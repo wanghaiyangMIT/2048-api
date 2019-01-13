@@ -25,7 +25,7 @@ parser.add_argument('--batch_size', type = int  , default = 1 )
 parser.add_argument('--device',     type = int  , default=-1, help='gpu device id')
 parser.add_argument('--lr',         type = float, default=0.00003)
 parser.add_argument('--num_epoch',  type=int,   default=200,  help='maximum number of epochs')
-
+parser.add_argument('--scratchtrain',  type=int,   default=1,  help='train from scratch,1 means train from scrach, 0 means train from pre_params.')
 args = parser.parse_args()
 
 if len(args.save_dir) == 0:
@@ -61,7 +61,8 @@ if __name__ == '__main__':
     if args.device > -1:
         os.environ['CUDA_VISIBLE_DEVICES'] = '{}'.format(args.device)
         model = MyAgent(args,args.batch_size).cuda()
-        model.load_state_dict(torch.load(os.path.join(args.save_dir,'last_params.pkl')))
+        if agrs.scratchtrain == 0:
+            model.load_state_dict(torch.load('pretrain_params.pkl'))
     adam = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=args.lr)
     run_best_score = 0
     for epoch in range(10000,args.num_epoch):
