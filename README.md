@@ -41,7 +41,7 @@ python webapp.py
 ```
 ![demo](preview2048.gif)
 # my agent performance
-！[demo](2048-score-distribution.jpeg)
+![demo](2048-score-distribution.jpeg)
 
 # To online train your own model
 ```bash
