@@ -65,7 +65,7 @@ if __name__ == '__main__':
             model.load_state_dict(torch.load('pretrain_params.pkl'))
     adam = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=args.lr)
     run_best_score = 0
-    for epoch in range(10000,args.num_epoch):
+    for epoch in range(args.num_epoch):
         #change  temp data 500test
         if epoch % 40 == 0:
             #clean data
